@@ -5,6 +5,15 @@ html=1 #If -p is not triggered then creat HTML code.
 plain=0
 help=0
 
+for arg in "$@"; do
+  shift
+  case "$arg" in
+    "--help") set -- "$@" "-h" ;;
+    "--plain") set -- "$@" "-p" ;;
+    *)        set -- "$@" "$arg"
+  esac
+done
+
 while getopts "ph" opt; do
   case $opt in
         p) html=0; plain=1;;
